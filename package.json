@@ -3,10 +3,8 @@
   "version": "1.0.0",
   "source": "src/pages/index.html",
   "scripts": {
-    "test1": "nodemon index.js",
-    "start1": "node index.js",
-    "start": "parcel",
-    "build": "parcel build"
+    "start": "parcel index.html",
+    "build": "parcel build src/pages/index.html"
   },
   "repository": {
     "type": "git",
@@ -25,7 +23,8 @@
     "buffer": "^6.0.3",
     "nodemon": "^3.1.9",
     "parcel": "^2.13.3",
-    "process": "^0.11.10"
+    "process": "^0.11.10",
+    "svgo": "^3.3.2"
   },
   "babel": {
     "preset": [
