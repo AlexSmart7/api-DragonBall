@@ -100,6 +100,12 @@ function verImagen(src,name,description) {
 
 }
 
+document.getElementById("close").addEventListener("click", () => cerrarModal());
+
+function cerrarModal() {
+    document.getElementById("modal").style.display = "none";
+}
+
 // Función para cambiar de página
 function cambiarPagina(incremento) {
     let nuevaPagina = currentPage + incremento;
@@ -128,3 +134,4 @@ document.getElementById("inputSearch").addEventListener("input", function () {
 
 obtenerPersonajes();
 obtenerTodos();
+

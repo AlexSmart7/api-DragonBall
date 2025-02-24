@@ -140,7 +140,7 @@
     <div class="album py-5 bg-body-tertiary">
       
         <div class="modal" id="modal" >
-            <span class="close" onclick="cerrarModal()">×</span>
+            <span class="close"><button class="btn btn-primary float-end" id="close">X</button></span>
             <img id="modalImagen">
             <div class="container" >
                 <p id="modalNombre" style="color: white; font-size: 20px; font-weight: bold; margin-top: 10px;"></p>
@@ -155,9 +155,4 @@
 
 </body>
 
-<script>
-    function cerrarModal() {
-    document.getElementById("modal").style.display = "none";
-    }
-</script>
 </html>
