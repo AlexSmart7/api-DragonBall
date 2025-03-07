@@ -60,21 +60,20 @@ function mostrarPersonajes(personajes) {
         card.classList.add("card");
         card.innerHTML = `
         <div class="col-md-12">
-        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-          
-            <div class="col p-4 d-flex flex-column position-static"> 
-                <strong class="d-inline-block mb-2 text-primary-emphasis">${personaje.affiliation}</strong>
-                <h3 class="mb-0">${personaje.name}</h3>
+        <div class="row g-0 rounded overflow-hidden d-flex flex-column align-items-center text-center text-md-start">
+
+        <!-- Informacion del personaje -->
+            <div class="col-md-8 p-4 d-flex flex-column col-md-4 p-4 d-flex flex-column justify-content-center align-items-center align-items-md-start"> 
+                <strong class="d-inline-block mb-2 text-primary">${personaje.affiliation}</strong>
+                <h3 class="mb-0">${personaje.name}</h3>                   
+            </div>
+        <!-- Imagen -->
+            <div class="col-md-4 d-flex justify-content-center">
+                <img src="${personaje.image}" alt="${personaje.name}" class="img-fluid rounded img-click" style="object-fit: cover; width: 100%; height: auto;">
+            </div>
+        <!-- Raza -->
+            <div class="col-md-4 p-4 d-flex flex-column justify-content-center align-items-center align-items-md-start"> 
                 <div class="mb-1 text-body-secondary">${personaje.race}</div>                    
-            </div>
-            <div class="col-auto d-none d-lg-block">
-                <img src="${personaje.image}" alt="${personaje.name}" class="img-click">
-            </div>
-            <div class="col p-4 d-flex flex-column position-static">
-            <p><strong>Poder</strong></p>
-                <div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
-                <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%">${personaje.ki}</div>
-                </div>
             </div>
         </div>
         </div>
@@ -82,7 +81,9 @@ function mostrarPersonajes(personajes) {
 
         // Agregar evento click a la imagen
         let img = card.querySelector(".img-click");
-        img.addEventListener("click", () => verImagen(personaje.image,personaje.name,personaje.description));
+        img.addEventListener("click", () => 
+            
+            verImagen(personaje.image,personaje.name,personaje.description,personaje.ki,personaje.maxKi));   
 
         contenedor.appendChild(card);
     });
@@ -91,20 +92,29 @@ function mostrarPersonajes(personajes) {
 
 // Funcion para seleccionar personaje y mostrar imagen y descripcion 
 
-function verImagen(src,name,description) {
+function verImagen(src,name,description,ki,maxKi) {
+    let modal = document.getElementById("modal"); 
+
     document.getElementById("modalImagen").src = src;
     document.getElementById("modalNombre").textContent = name; // Agrega el nombre
-    document.getElementById("modalDescripcion").textContent = description; // Agrega la
-    document.getElementById("modal").style.display = "flex"
-    
+    document.getElementById("modalDescripcion").textContent =  description || "Sin descripción";  // Agrega la descripcion
+    document.getElementById("modalKi").textContent = `${ki}%`; // Ki
+    document.getElementById("modalKi").style.width = `${ki}%`; // Ajustar barra de progreso
+    document.getElementById("modalmaxKi").textContent = `${maxKi}%`; // Máximo Ki
+    document.getElementById("modalmaxKi").style.width = `${maxKi}%`; // Ajustar barra de progreso
 
+
+    modal.classList.add("show"); // Agregar clase para Bootstrap (si usas Bootstrap)
+    modal.style.display = "flex";
+      // Mostrar el modal
 }
-
-document.getElementById("close").addEventListener("click", () => cerrarModal());
 
 function cerrarModal() {
     document.getElementById("modal").style.display = "none";
 }
+
+document.getElementById("close").addEventListener("click", () => cerrarModal());
+
 
 // Función para cambiar de página
 function cambiarPagina(incremento) {
